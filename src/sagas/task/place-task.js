@@ -9,7 +9,7 @@ import * as types from '../../actions/action-types';
 export function * place({payload}) {
     const config = {
         method: 'GET',
-        url: `http://localhost:8080/getPhotoIds`,
+        url: `http://localhost:8080/yelp/search`,
         headers: {
             query: payload,
             'Content-Type': 'application/json'
@@ -20,22 +20,5 @@ export function * place({payload}) {
         yield put({type: types.GET_PLACES_SUCCESS, payload: photoIds});
     } catch (err) {
         yield put({type: types.GET_PLACES_FAIL, err});
-    }
-}
-
-export function * placeInfo({payload}) {
-    try {
-        const config = {
-                method: 'GET',
-                url: `http://localhost:8080/getPhotoInfo`,
-                headers: {
-                    photoId: payload.photo.id,
-                    'Content-Type': 'application/json'
-                }
-            };
-        const collection = yield call(axios, config);
-        yield put({type: types.GET_INFO_SUCCESS, payload: collection});
-    } catch (err) {
-        yield put({type: types.GET_INFO_FAIL, err});
     }
 }
