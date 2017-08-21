@@ -1,16 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as place from '../actions/place-actions';
-import Photo from './place-photos';
+import Places from './places';
 
 const Search = (props) => {
     let searchQuery = null;
     const flickerSearch = () => {
         props.getPlaces(searchQuery.value);
     }
-    if (props.places.id !== null && props.places.id.data.length > 10) {
-        var collection = props.places.id.data.map(el => {
-            return <Photo data={el}/>
+    if (props.places !== null && props.places.data.length > 0) {
+        console.log(props);
+        var collection = props.places.data.map(el => {
+            return <Places data={el}/>
         })
         return (
             <div className="App">
@@ -26,6 +27,7 @@ const Search = (props) => {
             </div>
         )
     } else {
+        console.log(props);
         return (
             <div className="App">
                 <div className="App-header">
