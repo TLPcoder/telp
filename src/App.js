@@ -5,7 +5,7 @@ import Search from './components/search'
 
 const App = (props) =>{
   return (
-      <Search/>
+      <Search something='fuck'/>
     );
 }
 
