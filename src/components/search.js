@@ -2,12 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as place from '../actions/place-actions';
 import Places from './places';
+import Pages from './pages';
 
 const Search = (props) => {
     let searchQuery = null;
     const flickerSearch = () => {
         props.getPlaces(searchQuery.value);
     }
+    console.log('look here', props);
     if (props.places !== null && props.places.data.length > 0) {
         console.log(props);
         var collection = props.places.data.map(el => {
@@ -24,10 +26,10 @@ const Search = (props) => {
                 <input type="text" name="" id="" ref={sq => (searchQuery = sq)}/>
                 <input type="button" value="Search" onClick={() => (flickerSearch())}/>
                 {collection}
+                <Pages store={props}/>
             </div>
         )
     } else {
-        console.log(props);
         return (
             <div className="App">
                 <div className="App-header">

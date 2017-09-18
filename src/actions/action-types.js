@@ -7,3 +7,6 @@ export const GET_PLACES = 'GET_PLACES';
 export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS';
 export const GET_INFO_FAIL = 'GET_INFO_FAIL';
 export const GET_INFO = 'GET_PLACES';
+
+export const NEXT = 'NEXT';
+export const PREVIOUS = 'PREVIOUS'
