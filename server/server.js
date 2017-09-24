@@ -7,14 +7,14 @@ var telp;
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, query');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, query, offset');
     req.method === 'OPTIONS' ? res.sendStatus(200) : next();
 })
 
 app.use('/yelp', (req,res,next) => {
     yelp.accessToken(clientId, clientSecret).then(response => {
-        telp = yelp.client(response.jsonBody.access_token);
-        console.log(telp);
+        telp = yelp.client('Xw1__9ZXOGhxRtxzxw5d_uq9XzxSw65GQHGQ1zOvm-hFN9kwgdDSrM00EaSiDPcW4LBqpci41h7J_nXIwhmwwaPKLYifoUwk9s4NFUaDimEItMNyFtsG5Q8Vo1eaWXYx');
+        console.log('yelp client', telp);
       }).catch(e => {
         console.log(e);
       });
@@ -22,13 +22,15 @@ app.use('/yelp', (req,res,next) => {
 })
 
 app.get('/yelp/search', (req, res, next) => {
+    console.log('req.headers', req.headers.query);
     yelp.accessToken(clientId, clientSecret).then(response => {
         telp.search({
             'term': req.headers.query,
             'location': '94030',
             'sort': 0,
             'radius_filter': 40000,
-            'category_filter': 'Restaurants'
+            'category_filter': 'Restaurants',
+            'offset': req.headers.offset
         }).then(response => {
             console.log(response.jsonBody.businesses[0].name);
             res.json(response.jsonBody.businesses);
@@ -38,4 +40,4 @@ app.get('/yelp/search', (req, res, next) => {
     });
 })
 
-app.listen(PORT)
+app.listen(PORT);
