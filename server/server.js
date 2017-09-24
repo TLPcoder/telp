@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 
 app.use('/yelp', (req,res,next) => {
     yelp.accessToken(clientId, clientSecret).then(response => {
-        telp = yelp.client(response.jsonBody.access_token);
+        telp = yelp.client('Xw1__9ZXOGhxRtxzxw5d_uq9XzxSw65GQHGQ1zOvm-hFN9kwgdDSrM00EaSiDPcW4LBqpci41h7J_nXIwhmwwaPKLYifoUwk9s4NFUaDimEItMNyFtsG5Q8Vo1eaWXYx');
         console.log('yelp client', telp);
       }).catch(e => {
         console.log(e);
@@ -22,7 +22,7 @@ app.use('/yelp', (req,res,next) => {
 })
 
 app.get('/yelp/search', (req, res, next) => {
-    console.log('req.headers.query', req.headers.query);
+    console.log('req.headers', req.headers.query);
     yelp.accessToken(clientId, clientSecret).then(response => {
         telp.search({
             'term': req.headers.query,
@@ -40,4 +40,4 @@ app.get('/yelp/search', (req, res, next) => {
     });
 })
 
-app.listen(PORT)
+app.listen(PORT);

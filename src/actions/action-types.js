@@ -10,3 +10,10 @@ export const GET_INFO = 'GET_PLACES';
 
 export const NEXT = 'NEXT';
 export const PREVIOUS = 'PREVIOUS'
+export const TOPAGE = 'TOPAGE'
+
+export const SET_PLACE = 'SET_PLACE';
+export const SET_PLACE_SUCCESS = 'SET_PLACE_SUCCESS';
+export const SET_PLACE_FAIL = 'SET_PLACE_FAIL';
+
+export const BACK = 'BACK';

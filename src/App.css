@@ -27,22 +27,39 @@
   }
 }
 
-#place {
+#card {
   margin: auto;
   height: 300px;
   width: 800px;
+  background-color: #F0F0F0;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+#place {
+  position: relative;
+  top: 45px;
 }
 
 #place-image {
   height: 200px;
   width: 200px;
   float: left;
+  margin-left: 20px;
 }
 
-#info-left{
-  float:left
+#info-left {
+  float: left;
+  margin-top:29px;
+  margin-left: 20px;
 }
 
-#info-right{
-  float:right
+#info-right {
+  float: right;
+  margin-top:29px;
+  margin-right: 20px;
+}
+
+.currentPage {
+  background-color: red;
 }
