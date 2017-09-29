@@ -4,11 +4,12 @@ import axios from 'axios';
 import * as types from '../../actions/action-types';
 
 export function * place({payload}) {
+    console.log('request headers', payload);
     const config = {
         method: 'GET',
         url: `http://localhost:8080/yelp/search`,
         headers: {
-            query: payload,
+            query: JSON.stringify(payload),
             'Content-Type': 'application/json',
         }
     };
@@ -25,12 +26,11 @@ export function * offset({payload}) {
         method: 'GET',
         url: `http://localhost:8080/yelp/search`,
         headers: {
-            query: payload.query,
+            query: JSON.stringify(payload.query),
             'Content-Type': 'application/json',
             offset: payload.offset
         }
     };
-    console.log('payload dog', payload);
     try {
         const photoIds = yield call(axios, config);
         photoIds.data = payload.placeData.concat(photoIds.data);

@@ -17,3 +17,5 @@ export const SET_PLACE_SUCCESS = 'SET_PLACE_SUCCESS';
 export const SET_PLACE_FAIL = 'SET_PLACE_FAIL';
 
 export const BACK = 'BACK';
+
+export const CURRENT_LOCATION = 'CURRENT_LOCATION';
