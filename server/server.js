@@ -26,41 +26,46 @@ app.use('/yelp', (req, res, next) => {
 
 app.get('/yelp/search', (req, res, next) => {
     const headers = JSON.parse(req.headers.query);
-    console.log(headers);
+    const offset = req.get('offset')
+    
     if (typeof req.headers.query.location === 'string') {
+        let request = locationRequest(headers, offset);
         yelp.accessToken(clientId, clientSecret).then(response => {
-            telp.search({
-                term: headers.term,
-                location: req.headers.query.location || '94030',
-                sort: 0,
-                radius_filter: 40000,
-                category_filter: 'Restaurants',
-                offset: req.headers.offset
-            }).then(response => {
-                console.log(response.jsonBody.businesses[0].name);
+            telp.search(request).then(response => {
                 res.json(response.jsonBody.businesses);
             });
         }).catch(e => {
             res.status(500).json({error: e});
         });
     } else {
+        let request = currentLocationRequest(headers, offset);
         yelp.accessToken(clientId, clientSecret).then(response => {
-            telp.search({
-                term: headers.term,
-                latitude: headers.location.lat,
-                longitude:headers.location.lng,
-                sort: 0,
-                radius_filter: 40000,
-                category_filter: 'Restaurants',
-                offset: req.headers.offset
-            }).then(response => {
-                console.log(response.jsonBody.businesses[0].name);
+            telp.search(request).then(response => {
                 res.json(response.jsonBody.businesses);
             });
         }).catch(e => {
             res.status(500).json({error: e});
         });
     }
+})
+
+const currentLocationRequest = (headers, offset) => ({
+    term: headers.term,
+    latitude: headers.location.lat,
+    longitude: headers.location.lng,
+    sort: 0,
+    radius_filter: 40000,
+    category_filter: 'Restaurants',
+    offset: offset
+})
+
+const locationRequest = (headers, offset) => ({
+    term: headers.term,
+    location: req.headers.query.location || '94030',
+    sort: 0,
+    radius_filter: 40000,
+    category_filter: 'Restaurants',
+    offset: offset
 })
 
 app.listen(PORT);
