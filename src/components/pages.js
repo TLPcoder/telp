@@ -6,7 +6,7 @@ const Pages = (props) =>{
         if(x === 'next'){
             props.page.nextPage(next());
             props.page.setSearch({
-                query: props.page.searchTerm,
+                query: {term: props.page.searchTerm, location: props.page.location},
                 offset: (props.page.page.currentPage + 1) * 10,
                 placeData: props.page.places
             });
