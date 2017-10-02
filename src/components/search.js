@@ -29,7 +29,9 @@ class Search extends Component{
             return (
                 <form action="">
                     <input required type="text" name="" id="" ref={sq => (this.searchQuery = sq)}/>
+                    <br/>
                     Use Current Location<input type="checkbox" onClick={() => (this.getLocation)}/>
+                    <br/>
                     Search Location<input type="checkbox" onClick={() => {
                         this.setState({searchLocation: !this.state.searchLocation})
                     }}/>
@@ -42,8 +44,13 @@ class Search extends Component{
                     <input type="text" name="" id="" ref={sq => (this.searchQuery = sq)}/>
                     <br/>
                     <input type="text" placeholder = 'address, neighborhood, city, state or zip' ref={sq => (this.searchQuery = sq)}/>
-                    Use Current Location<input type="checkbox" onClick={() => (this.getLocation)}/>
-                    Search Location<input type="checkbox" onClick={() => {
+                    <br/>
+                    Use Current Location<input type="checkbox" onClick={() => {
+                        this.setState({searchLocation: !this.state.searchLocation})
+                        this.getLocation
+                    }}/>
+                    <br/>
+                    Search Location<input checked type="checkbox" onClick={() => {
                         this.setState({searchLocation: !this.state.searchLocation})
                     }}/>
                     <input type="button" value="Search" onClick={() => (this.searchTelp())}/>
