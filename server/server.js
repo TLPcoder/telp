@@ -2,10 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 const yelp = require('yelp-fusion');
-const {
-    clientId,
-    clientSecret
-} = require('./config');
+const {clientId, clientSecret} = require('./config');
 var telp;
 
 app.use((req, res, next) => {
