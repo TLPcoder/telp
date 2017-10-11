@@ -17,6 +17,7 @@ app.use('/yelp', (req, res, next) => {
         console.log('yelp client', telp);
     }).catch(e => {
         console.log(e);
+        res.status(500).json({'BFF Error': e})
     });
     next();
 })
@@ -24,8 +25,9 @@ app.use('/yelp', (req, res, next) => {
 app.get('/yelp/search', (req, res, next) => {
     const headers = JSON.parse(req.headers.query);
     const offset = req.get('offset')
-    
+    console.log(headers);
     if (typeof req.headers.query.location === 'string') {
+        console.log('string baby');
         let request = locationRequest(headers, offset);
         yelp.accessToken(clientId, clientSecret).then(response => {
             telp.search(request).then(response => {
