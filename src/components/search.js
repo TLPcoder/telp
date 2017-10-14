@@ -12,7 +12,6 @@ class Search extends Component{
         this.searchQuery = null;
     }
     searchTelp = () => {
-        console.log('hello there bro', this.addressLocation.value);
         if(!!this.addressLocation){
             console.log('hello', this.addressLocation.value);
             this.props.search.getPlaces({term: this.searchQuery.value, location: this.addressLocation.value});
@@ -49,9 +48,9 @@ class Search extends Component{
         }else {
             return(
                 <form action="">
-                    <input type="text" placeholder = 'address, neighborhood, city, state or zip' name="" id="" ref={sq => (this.addressLocation = sq)}/>
-                    <br/>
                     <input type="text" placeholder = 'search term' ref={sq => (this.searchQuery = sq)}/>
+                    <br/>
+                    <input type="text" placeholder = 'address, neighborhood, city, state or zip' name="" id="" ref={sq => (this.addressLocation = sq)}/>
                     <br/>
                     Use Current Location<input type="checkbox" onClick={() => {
                         this.setState({addressLocation: !this.state.addressLocation})

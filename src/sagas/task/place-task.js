@@ -4,7 +4,6 @@ import axios from 'axios';
 import * as types from '../../actions/action-types';
 
 export function * place({payload}) {
-    console.log('request headers', payload);
     const config = {
         method: 'GET',
         url: `http://localhost:8080/yelp/search`,

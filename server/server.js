@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const app = express();
 const PORT = 8080;
@@ -26,8 +27,7 @@ app.get('/yelp/search', (req, res, next) => {
     const headers = JSON.parse(req.headers.query);
     const offset = req.get('offset')
     console.log(headers);
-    if (typeof req.headers.query.location === 'string') {
-        console.log('string baby');
+    if (typeof headers.location === 'string') {
         let request = locationRequest(headers, offset);
         yelp.accessToken(clientId, clientSecret).then(response => {
             telp.search(request).then(response => {
@@ -60,7 +60,7 @@ const currentLocationRequest = (headers, offset) => ({
 
 const locationRequest = (headers, offset) => ({
     term: headers.term,
-    location: req.headers.query.location || '94030',
+    location: headers.location || '94030',
     sort: 0,
     radius_filter: 40000,
     category_filter: 'Restaurants',
