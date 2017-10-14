@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactStars from 'react-stars';
 
 const Places = (props) => {
     return (
@@ -10,7 +11,7 @@ const Places = (props) => {
                     alt="" height='200px' width='200px'/>
                 <div id='info-left'>
                     <h3 id='location-name'>{props.data.name}</h3>
-                    <p id='rating'>{props.data.rating}</p>
+                    <ReactStars id='rating' count={props.data.rating} edit='false' color1='red' size='24'/>
                     <p id='category'>{(props.data.price === undefined ? '' : 
                     props.data.price + ' - ') + props.data.categories.map(t => (t.title)).join(',')}</p>
                 </div>
